@@ -1,3 +1,15 @@
+v0.3.2
+======
+
+- Added support to exclude retweets from user timelines (disabled by default)
+
+
+v0.3.1
+======
+
+- Added support for original image size
+- Set default image download size to original
+
 v0.3.0
 ======
 
