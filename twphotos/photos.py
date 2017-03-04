@@ -19,7 +19,7 @@ import twitter
 class TwitterPhotos(object):
     def __init__(self, user=None, list_slug=None, outdir=None,
                  num=None, parallel=False, increment=False, size=None,
-                 exclude_replies=False, tl_type=None, test=False):
+                 exclude_replies=False, exclude_retweets=False, tl_type=None, test=False):
         """
         :param user: The screen_name of the user whom to return results for
         :param list_slug: The slug identifying the list owned by the `user`
@@ -32,6 +32,7 @@ class TwitterPhotos(object):
             photos since last download
         :param: Photo size represented as a string (one of `MEDIA_SIZES`)
         :param: A boolean indicating whether to exlude replies tweets
+        :param: A boolean indicating whether to exlude retweets
         :param type: Timeline type represented as a string (one of `TIMELINE_TYPES`)
         :param test: A boolean indicating whether in test mode
         """
@@ -43,6 +44,7 @@ class TwitterPhotos(object):
         self.increment = increment
         self.size = size
         self.exclude_replies = exclude_replies
+        self.exclude_retweets = exclude_retweets
         self.tl_type = tl_type
         self.test = test
         if not self.test:
@@ -100,7 +102,8 @@ class TwitterPhotos(object):
                 count=count or COUNT_PER_GET,
                 max_id=max_id,
                 since_id=since_id,
-                exclude_replies=self.exclude_replies)
+                exclude_replies=self.exclude_replies,
+                include_rts=not self.exclude_retweets)
 
         if statuses:
             min_id = statuses[-1].id
@@ -282,6 +285,7 @@ def main():
                              increment=args.increment,
                              size=args.size,
                              exclude_replies=args.exclude_replies,
+                             exclude_retweets=args.exclude_retweets,
                              tl_type=args.type)
     # Print only screen_name, tweet id and media_url
     if args.print:

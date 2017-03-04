@@ -23,6 +23,8 @@ def parse_args():
                         help='download only new photos since last download')
     parser.add_argument('-e', '--exclude_replies', action='store_true',
                         help='exclude replies')
+    parser.add_argument('-w', '--exclude_retweets', action='store_true',
+                        help='exclude retweets')
     parser.add_argument('-s', '--size', choices=MEDIA_SIZES,
                         help='photo size')
     parser.add_argument('-t', '--type', choices=TIMELINE_TYPES,
