@@ -30,10 +30,10 @@ class TwitterPhotos(object):
             enabled
         :param increment: A boolean indicating whether to download only new
             photos since last download
-        :param: Photo size represented as a string (one of `MEDIA_SIZES`)
-        :param: A boolean indicating whether to exlude replies tweets
-        :param: A boolean indicating whether to exlude retweets
-        :param type: Timeline type represented as a string (one of `TIMELINE_TYPES`)
+        :param size: Photo size represented as a string (one of `MEDIA_SIZES`)
+        :param exclude_replies: A boolean indicating whether to exclude tweets that are replies
+        :param exclude_retweets: A boolean indicating whether to exclude retweets
+        :param tl_ype: Timeline type represented as a string (one of `TIMELINE_TYPES`)
         :param test: A boolean indicating whether in test mode
         """
         self.user = user
