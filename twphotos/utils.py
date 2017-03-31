@@ -15,3 +15,12 @@ def download(media_url, size, outdir):
 def create_directory(d):
     if not os.path.exists(d):
         os.makedirs(d)
+
+		
+def get_directories(outdir):
+	contents = os.scandir(outdir)
+	folder_list = []
+	for entry in contents:
+		if entry.isdir:
+			folder_list.append(entry.name)
+	return folder_list
