@@ -18,7 +18,7 @@ import twitter
 
 class TwitterPhotos(object):
     def __init__(self, user=None, list_slug=None, outdir=None,
-                 num=None, parallel=False, increment=False, size=None,
+                 num=None, disable_parallel=False, increment=False, size=None,
                  exclude_replies=False, exclude_retweets=False, tl_type=None, test=False):
         """
         :param user: The screen_name of the user whom to return results for
@@ -26,7 +26,7 @@ class TwitterPhotos(object):
         :param outdir: The output directory (absolute path)
         :param num: Number of most recent photos to download from each
             related user
-        :param parallel: A boolean indicating whether parallel download is
+        :param disable_parallel: A boolean indicating whether parallel download is
             enabled
         :param increment: A boolean indicating whether to download only new
             photos since last download
@@ -40,7 +40,7 @@ class TwitterPhotos(object):
         self.list_slug = list_slug
         self.outdir = outdir
         self.num = num
-        self.parallel = parallel
+        self.disable_parallel = disable_parallel
         self.increment = increment
         self.size = size
         self.exclude_replies = exclude_replies
@@ -186,7 +186,7 @@ class TwitterPhotos(object):
                 sys.stdout.write(msg)
                 return
 
-        if self.parallel:
+        if not self.disable_parallel:
             parallel_download(photos, user, size, outdir)
         else:
             for photo in photos:
@@ -281,7 +281,7 @@ def main():
                              list_slug=args.list_slug,
                              outdir=args.outdir,
                              num=args.num,
-                             parallel=args.parallel,
+                             disable_parallel=args.disable_parallel,
                              increment=args.increment,
                              size=args.size,
                              exclude_replies=args.exclude_replies,

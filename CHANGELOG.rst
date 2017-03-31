@@ -1,3 +1,9 @@
+v0.3.3
+======
+
+- Enabled parallel downloading by default to speed up downloads
+
+
 v0.3.2
 ======
 
